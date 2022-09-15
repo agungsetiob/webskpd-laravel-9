@@ -134,6 +134,7 @@
                 </a>
               </div>
               <div>
+                <a href="{{ url('from/'.$post->user_id.'/'. $post->user->username) }}">
                 <span
                   class="
                     bg-primary
@@ -151,6 +152,7 @@
                 >
                   {{$post->user->username}}
                 </span>
+                </a>
                 <a href="{{ url('blog/'.$post->category_id.'/'. $post->category->name) }}">
                 <span
                   class="
