@@ -135,7 +135,7 @@ class HomeController extends Controller
         return view ('main.leaderboard', compact('ranks'));
     }
 
-    public function category($category_id, $category)
+    public function category($category_id)
     {
         
         $posts = Post::where('category_id', $category_id)
@@ -146,16 +146,15 @@ class HomeController extends Controller
         return view ('main.blog', compact('posts'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+   public function postByUser($user_id)
     {
-        //
+        
+        $posts = Post::where('user_id', $user_id)
+            ->paginate(6);
+        foreach ($posts as $post){
+            $post->content = Str::limit($post->content, 40);   
+        }
+        return view ('main.blog', compact('posts'));
     }
 
     /**
