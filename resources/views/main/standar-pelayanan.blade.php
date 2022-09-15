@@ -249,7 +249,7 @@
                       mb-2
                     "
                   >
-                    Faq
+                    FAQ
                   </a>
                 </li>
                 <li>
@@ -263,7 +263,7 @@
                       mb-2
                     "
                   >
-                    Dokter kami
+                    Dokter Kami
                   </a>
                 </li>
                 <li>
@@ -458,7 +458,7 @@
                     target="_blank"
                     class="text-primary hover:underline"
                   >
-                    IT RSUD dr. H. Andi Abdurrahman Noor
+                    Om Agung
                   </a>
                 </p>
                 </div>

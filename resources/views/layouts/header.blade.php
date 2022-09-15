@@ -251,7 +251,7 @@
                         xl:ml-12
                       "
                     >
-                      Faq
+                      FAQ
                     </a>
                   </li>
                   <li class="relative group">

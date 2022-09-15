@@ -251,7 +251,7 @@
                       mb-2
                     "
                   >
-                    Faq
+                    FAQ
                   </a>
                 </li>
                 <li>
@@ -265,7 +265,7 @@
                       mb-2
                     "
                   >
-                    Dokter kami
+                    Dokter Kami
                   </a>
                 </li>
                 <li>
