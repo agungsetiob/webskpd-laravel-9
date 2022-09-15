@@ -22,7 +22,7 @@ class PostController extends Controller
             $posts = Post::all()
                             ->where('user_id', Auth::user()->id)
                             ->where('slug', '!==', 'layanan-kami')
-                            ->where('slug', '!==', 'survey-kepuasan-masyarakat');
+                            ->where('category_id', '!==', 6);
             $totalPosts = Post::all()->count();
             $messages = Contact::all()->count();
             $activeUsers = User::where('status', '=', 'active')->count();
