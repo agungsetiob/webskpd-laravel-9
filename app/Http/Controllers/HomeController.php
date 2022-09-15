@@ -41,9 +41,9 @@ class HomeController extends Controller
     //doctor for main page
     public function homeDoctor()
     {
-        $doctors = Doctor::latest()
-        ->limit(4)
-        ->get();
+        $doctors = Doctor::inRandomOrder()
+                ->limit(4)
+                ->get();
         return view('main.index', compact('doctors'));
     }
 
