@@ -148,6 +148,7 @@
                     font-semibold
                     text-white
                     mb-5
+                    hover:bg-dark
                   "
                 >
                   {{$post->user->username}}

@@ -19,10 +19,10 @@ class PostController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin') {
-            $posts = Post::all()
-                            ->where('user_id', Auth::user()->id)
+            $posts = Post::where('user_id', Auth::user()->id)
                             ->where('slug', '!==', 'layanan-kami')
-                            ->where('category_id', '!==', 6);
+                            ->where('category_id', '!==', 6)
+                            ->get();
             $totalPosts = Post::all()->count();
             $messages = Contact::all()->count();
             $activeUsers = User::where('status', '=', 'active')->count();
