@@ -39,6 +39,7 @@ Route::get('blog/{slug}', [HomeController::class, 'show'])->name('blog');
 Route::get('our/specialists', [HomeController::class, 'doctor']);
 Route::get('our/doctors', [HomeController::class, 'doctorGeneral']);
 Route::get('leaderboard', [HomeController::class, 'rank']);
+Route::get('from/{user_id}/{username}', [HomeController::class, 'postByUser']);
 
 Route::get('standar-pelayanan', [StandarPelayananController::class, 'standarPelayanan']);
 
