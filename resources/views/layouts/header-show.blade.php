@@ -7,7 +7,8 @@
     <meta name="description" content='{!!$description!!}' />
     <meta property="og:title" content="{{$post->title}}">
     <meta property="og:image" content="{{asset ('storage/posts/'. $post->image)}}">
-    <meta property="og:description" content="">
+    <meta property="og:description" content='{!!$description!!}'>
+    <meta property="og:url" content="{{url('blog/'.$post->slug)}}"/>
 
     <title>{{ config('app.title', 'dr. H. Andi Abdurrahman Noor') }}</title>
     <link
