@@ -1,4 +1,4 @@
-@include ('layouts.header-page')
+@include ('layouts.header-show')
 @section ('content')
 
     <!-- ====== Banner Section Start -->
@@ -114,7 +114,8 @@
             >
               <img
                 src="{{asset ('storage/posts/'. $post->image)}}"
-                alt="image"
+                alt="{{$post->title}}"
+                title="{{$post->title}}"
                 class="w-full h-full object-cover object-center"
               />
               <div

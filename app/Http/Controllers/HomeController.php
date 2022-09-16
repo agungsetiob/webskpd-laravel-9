@@ -105,20 +105,24 @@ class HomeController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $description = Str::limit($post->content, 40);
         if ($post) {
             $post->view = $post->view + 1; //aktifkan nanti kalau sudah siap go live
             $post->save();
             $popularPosts = Post::latest('view')
-            ->where('id', '!=', $post->id)
-            ->limit(3)
-            ->get();
+                            ->where('id', '!=', $post->id)
+                            ->limit(3)
+                            ->get();
             $relatedPosts = Post::where([
-                ['category_id', '=', $post->category_id],
-                ['id', '!=', $post->id]
-            ])
-            ->limit(3)
-            ->get();
-            return view('main.show', compact('post', 'relatedPosts', 'popularPosts'));
+                            ['category_id', '=', $post->category_id],
+                            ['id', '!=', $post->id]
+                            ])
+                            ->limit(3)
+                            ->get();
+            return view('main.show', compact('post', 
+                                            'relatedPosts', 
+                                            'popularPosts', 
+                                            'description'));
         } else {
             return view ('errors.404');
         }
