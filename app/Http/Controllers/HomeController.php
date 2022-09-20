@@ -19,10 +19,11 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(6);
+        $title = 'Blog';
         foreach ($posts as $post){
             $post->content = Str::limit($post->content, 40);   
         }
-        return view('main.blog', compact('posts'));
+        return view('main.blog', compact('posts', 'title'));
     }
 
     /**
@@ -53,7 +54,8 @@ class HomeController extends Controller
         $doctors = Doctor::latest()
                 ->where('category', 'spesialis')
                 ->paginate(12);
-        return view('main.doctor', compact('doctors'));
+        $title = 'Dokter Spesialis';
+        return view('main.doctor', compact('doctors', 'title'));
     }
 
     //general doctor for doctor page for visitors
@@ -62,7 +64,8 @@ class HomeController extends Controller
         $doctors = Doctor::latest()
                 ->where('category', 'umum')
                 ->paginate(12);
-        return view('main.doctor', compact('doctors'));
+        $title = 'Dokter Umum';
+        return view('main.doctor', compact('doctors', 'title'));
     }
 
     /**
@@ -136,7 +139,8 @@ class HomeController extends Controller
                 ->where('status', 'active')
                 ->orderByDesc('posts_count')
                 ->paginate(6);
-        return view ('main.leaderboard', compact('ranks'));
+        $title = 'Top Author';
+        return view ('main.leaderboard', compact('ranks', 'title'));
     }
 
     public function category($category_id)
@@ -144,10 +148,11 @@ class HomeController extends Controller
         
         $posts = Post::where('category_id', $category_id)
             ->paginate(6);
+        $title = 'Sorted by Category';
         foreach ($posts as $post){
             $post->content = Str::limit($post->content, 40);   
         }
-        return view ('main.blog', compact('posts'));
+        return view ('main.blog', compact('posts', 'title'));
     }
 
    public function postByUser($user_id)

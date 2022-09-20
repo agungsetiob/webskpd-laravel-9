@@ -19,7 +19,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 Route::get('/profil', function () {
-    return view('main.about');
+    $title = 'Profil';
+    return view('main.about', compact('title'));
 });
 
 //call symlink trough symlink.blade.php

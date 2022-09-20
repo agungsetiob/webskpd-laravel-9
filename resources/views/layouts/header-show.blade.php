@@ -10,7 +10,7 @@
     <meta property="og:description" content='{!!$description!!}'>
     <meta property="og:url" content="{{url('blog/'.$post->slug)}}"/>
 
-    <title>{{ config('app.title', 'dr. H. Andi Abdurrahman Noor') }}</title>
+    <title>{{ $post->title }}</title>
     <link
       rel="shortcut icon"
       href="{{asset ('storage/logors.png')}}"
