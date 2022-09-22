@@ -11,14 +11,30 @@
         @if(Session::has('success'))
         <div class="alert alert-success">
             {{ Session::get('success') }}
+            atau klik <a class="text-primary" target="_blank" href="https://api.whatsapp.com/send?phone=6282225976594&text=Halo admin saya melakukan pendaftaran akun web rsud, mohon diaktifkan akun saya. Terimakasih">disini</a>
             @php
                 Session::forget('success');
             @endphp
+            
         </div>
         @endif
 
         <form method="POST" action="{{ route('user-register') }}" enctype="multipart/form-data">
             @csrf
+
+            <div class="text-center">
+                <h4
+                  class="
+                    text-3xl
+                    font-normal
+                    text-primary
+                    relative
+                    inline-flex
+                  "
+                >
+                  Registration Form
+                </h4>
+            </div>
 
             <!-- Name -->
             <div>
@@ -62,20 +78,15 @@
 
             <!-- profile photo -->
             <div class="form-group mt-4">
-                <x-label for="username" :value="__('Profile photo')" />
+                <x-label for="avatar" :value="__('Avatar')" />
                 <div class="input-group">
                     <label class="input-group-btn">
                         <span class="btny btn-outline-primary">Browse
                             <input accept="image/*" id="avatar" type="file" style="display: none;" multiple name="avatar">
                         </span>
                     </label>
-                        <input id="uploadFile" type="text" class="form-control @error('image') is-invalid @enderror" readonly placeholder="Choose an image">
+                        <input id="uploadFile" type="text" class="form-control @error('avatar') is-invalid @enderror" readonly placeholder="Choose an image">
                 </div>
-                @error('image')
-                <div class="alert alert-danger mt-2">
-                    {{ $message }}
-                </div>
-                @enderror  
             </div>
             <script type="text/javascript">
                 document.getElementById("avatar").onchange = function ()

@@ -85,7 +85,7 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'avatar'     => ['required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
+            'avatar'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $image = $request->file('avatar');
@@ -105,7 +105,7 @@ class RegisteredUserController extends Controller
 
         //Auth::login($user);
 
-        return back()->with('success', 'Registrasi selesai, hubungi umpeg untuk aktivasi akun');
+        return back()->with('success', 'Registrasi selesai, hubungi admin untuk aktivasi akun');
     }
 
     public function activateUser($id, Request $request)
