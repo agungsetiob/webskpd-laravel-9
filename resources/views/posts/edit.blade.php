@@ -22,6 +22,40 @@
 
     <link rel="shortcut icon" href="{{url ('storage/logors.png')}}" type="image/x-icon"/>
 
+    <script src="https://cdn.tiny.cloud/1/9s1s817h0tyv1a4jhlghnqoofc647ifzh5zh6z1in2bqpjb9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+         <script>
+               tinymce.init({
+                 selector: 'textarea#editor',
+                 plugins: 'code table lists image autosave fullscreen media link',
+                 toolbar: 'undo redo | formatselect| bold italic underline| alignleft aligncenter alignright alignjustify | fontsize fontfamily | indent outdent | bullist numlist | code link | table | media image | fullscreen | text color',
+                 image_title: true,
+                  automatic_uploads: true,
+                  file_picker_types: 'image',
+                  file_picker_callback: function (cb, value, meta) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'file');
+                    input.setAttribute('accept', 'image/*');
+                    input.onchange = function () {
+                    var file = this.files[0];
+
+                      var reader = new FileReader();
+                      reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        cb(blobInfo.blobUri(), { title: file.name });
+                  };
+                  reader.readAsDataURL(file);
+                };
+
+                input.click();
+              },
+            });
+         </script>
+
 </head>
 
 <body id="page-top">
@@ -290,7 +324,7 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Content</label>
-                                <textarea id="editor" class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content', $post->content) }}</textarea>
+                                <textarea rows="15" id="editor" class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content', $post->content) }}</textarea>
                             
                                 <!-- error message untuk content -->
                                 @error('content')
@@ -300,8 +334,8 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-md btn-primary">Save</button>
-                            <button type="reset" class="btn btn-md btn-warning">Reset</button>
+                            <button type="submit" class="btn btn-md btn-primary">Publish</button>
+                            <button type="reset" class="btn btn-md btn-warning" disabled>Draft</button>
 
                         </form> 
                     </div>
@@ -360,13 +394,6 @@
     <!-- Core plugin JavaScript-->
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-    <script src="{{asset('ckfinder/ckfinder.js')}}"></script>
-    <script src="https://cdn.ckeditor.com/4.19.1/full/ckeditor.js"></script>
-    <script type="text/javascript" src="{{asset('ckfinder/ckfinder.js')}}"></script>
-   <script>
-        var editor = CKEDITOR.replace( 'editor' );
-        CKFinder.setupCKEditor( editor );
-    </script>
 
 </body>
 
