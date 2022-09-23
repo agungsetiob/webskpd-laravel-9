@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
 
             $request->session()->regenerateToken();
 
-            return back()->with('fail', 'Akun anda belum aktif, hubungi umpeg untuk aktivasi');
+            return back()->with('fail', 'Akun anda tidak aktif, hubungi admin untuk aktivasi');
         }
         if (Auth::user()->role == 'admin') {
             return redirect()->intended(RouteServiceProvider::ADMIN);

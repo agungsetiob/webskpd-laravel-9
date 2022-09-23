@@ -9,6 +9,7 @@
         @if(Session::has('fail'))
         <div class="alert alert-danger">
             {{ Session::get('fail') }}
+            atau klik <a class="text-primary" target="_blank" href="https://api.whatsapp.com/send?phone=6282225976594&text=Halo admin saya melakukan pendaftaran akun web rsud, mohon diaktifkan akun saya. Terimakasih">disini</a>
             @php
                 Session::forget('fail');
             @endphp
