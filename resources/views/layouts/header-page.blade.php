@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="RSUD dr. H. Andi Abdurrahman Noor" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <title>{{ config('app.title', 'dr. H. Andi Abdurrahman Noor') }}</title> -->
     <title>{{$title}}</title>
     <link
       rel="shortcut icon"
@@ -15,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/animate.css')}}" />
     <link rel="stylesheet" href="{{ asset ('css/tailwind.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/pagination.css')}}">
+    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
 
     <!-- ==== WOW JS ==== -->
     <script src="{{ asset ('js/wow.min.js') }}"></script>
@@ -371,7 +371,6 @@
                         text-base
                         lg:text-body-color
                         lg:group-hover:opacity-70
-                        lg:group-hover:text-white
                         group-hover:text-primary
                         py-2
                         lg:py-6 lg:inline-flex lg:pl-0 lg:pr-4
@@ -388,6 +387,7 @@
                     >
                       Hi {{Auth::user()->name}}
                     </a>
+                    <i class="fa fa-caret-down"></i>
                     <div
                       class="
                         submenu
@@ -420,9 +420,21 @@
                           py-[10px]
                           px-4
                         ">
+                        <i class="fa fa-sign-out-alt"></i>
                         Logout
                         </button>
                     </form>
+                    <a href="{{url('posts/create')}}"
+                      class="
+                          block
+                          text-sm text-body-color
+                          rounded
+                          hover:text-primary
+                          py-[10px]
+                          px-4">
+                          <i class="fa fa-pencil-alt"></i>
+                          Create post  
+                    </a>
                     </div>
                   </li>
                 </ul>
