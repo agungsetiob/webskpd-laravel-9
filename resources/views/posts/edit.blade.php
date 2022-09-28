@@ -29,6 +29,7 @@
                  plugins: 'code table lists image autosave fullscreen media link',
                  toolbar: 'undo redo | formatselect| bold italic underline| alignleft aligncenter alignright alignjustify | fontsize fontfamily | indent outdent | bullist numlist | code link | table | media image | fullscreen | text color',
                  image_title: true,
+                 paste_as_text: true,
                   automatic_uploads: true,
                   file_picker_types: 'image',
                   file_picker_callback: function (cb, value, meta) {
@@ -63,110 +64,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon">
-                    <i class="fa fa-hospital-user"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Hi {{ Auth::user()->username }}</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            @if (Auth::user()->role == 'admin')
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('user/dashboard')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="{{url('posts/create')}}">
-                    <i class="fas fa-fw fa-newspaper"></i>
-                    <span>Article</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('standar/pelayanan')}}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Standar Pelayanan</span></a>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('doctors')}}">
-                    <i class="fas fa-fw fa-user-doctor"></i>
-                    <span>Doctors</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('skm')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>SKM</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('category')}}">
-                    <i class="fas fa-fw fa-book"></i>
-                    <span>Categories</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('messages')}}">
-                    <i class="fas fa-fw fa-envelope"></i>
-                    <span>Messages</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('our-services')}}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Users</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-hand-holding-medical"></i>
-                    <span>Our Services</span></a>
-            </li>
-
-            @elseif (Auth::user()->role == 'user')
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('dashboard')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="{{url('posts/create')}}">
-                    <i class="fas fa-fw fa-newspaper"></i>
-                    <span>Article</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('standar/pelayanan')}}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Standar Pelayanan</span></a>
-            </li>
-            @endif
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <x-collapse-menu/>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -275,7 +173,7 @@
                             @method ('PUT')
 
                             <div class="form-group">
-                                <img src="{{ Storage::url('public/posts/').$post->image }}" class="rounded img-fluid">
+                                <img src="{{ asset('storage/posts/'.$post->image) }}" class="rounded img-fluid mx-auto d-block">
                             </div>
 
                             <div class="form-group">

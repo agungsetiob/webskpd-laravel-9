@@ -22,13 +22,12 @@
 
     <link rel="shortcut icon" href="{{url ('storage/logors.png')}}" type="image/x-icon"/>
 
-        <script src="https://cdn.tiny.cloud/1/9s1s817h0tyv1a4jhlghnqoofc647ifzh5zh6z1in2bqpjb9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/9s1s817h0tyv1a4jhlghnqoofc647ifzh5zh6z1in2bqpjb9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
          <script>
                tinymce.init({
                  selector: 'textarea#editor',
                  plugins: 'code table lists image autosave fullscreen media link',
                  toolbar: 'undo redo | formatselect| bold italic underline| alignleft aligncenter alignright alignjustify | fontsize fontfamily | indent outdent | bullist numlist | code link | table | media image | fullscreen | text color',
-                 paste_as_text: true,
                  image_title: true,
                   automatic_uploads: true,
                   file_picker_types: 'image',
@@ -81,7 +80,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="#">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="#{{ url('search') }}">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for something?"
                                 aria-label="Search" aria-describedby="basic-addon2">
@@ -157,18 +156,17 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Create Article</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Create About Us</h1>
                     </div>
                 </div>
             </div>
             <!-- End of Main Content -->
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{url('profile/create')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <div class="input-group ">
@@ -186,17 +184,16 @@
                                 @enderror  
                             </div>
                             <script type="text/javascript">
-                                document.getElementById("uploadBtn").onchange = function (){
-                                        document.getElementById("uploadFile").value = this.value;
-                                    }
+                                document.getElementById("uploadBtn").onchange = function () {
+                                document.getElementById("uploadFile").value = this.value;};
                             </script>
 
                             <div class="form-group">
-                                <label class="font-weight-bold">Title</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Masukkan judul">
+                                <label class="font-weight-bold">Heading</label>
+                                <input type="text" class="form-control @error('heading') is-invalid @enderror" name="heading" value="{{ old('heading') }}" placeholder="Masukkan judul profil">
                             
                                 <!-- error message untuk title -->
-                                @error('title')
+                                @error('heading')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
@@ -204,30 +201,17 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="font-weight-bold">Category</label>
-                                    <select name="category" id="category" class="form-control @error('category') is-invalid @enderror" required>
-                                        <option value="" disabled selected>Choose category</option>
-                                        @foreach ($categories as $cat)
-                                        <option value="{{ $cat->id }}" {{ old('category') == $cat->id ? 'selected' : ''}}>{{ $cat->name }}</option>
-                                        @endforeach
-                                    </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">Content</label>
-                                <textarea rows="17" id="editor" class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
+                                <label class="font-weight-bold">Profil RSUD</label>
+                                <textarea rows="15" id="editor" class="form-control @error('about') is-invalid @enderror" name="about" rows="15" placeholder="Masukkan visi, misi, dan profil">{{ old('about') }}</textarea>
                             
                                 <!-- error message untuk content -->
-                                @error('content')
+                                @error('about')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-
-                            <button type="submit" class="btn btn-md btn-primary">Publish</button>
-                            <button type="reset" class="btn btn-md btn-warning" disabled>Draft</button>
-
+                            <button type="submit" class="btn btn-md btn-primary">Save</button>
                         </form> 
                     </div>
                 </div>
@@ -285,5 +269,7 @@
     <!-- Core plugin JavaScript-->
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+
 </body>
+
 </html>

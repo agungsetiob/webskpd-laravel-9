@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{CategoryController, ContactController};
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StandarPelayananController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/profil', function () {
     $title = 'Profil';
-    return view('main.about', compact('title'));
+    $profiles = Profile::all();
+    return view('main.about', compact('title', 'profiles'));
 });
 
 //call symlink trough symlink.blade.php
@@ -65,14 +68,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('upload/standar-pelayanan', [StandarPelayananController::class, 'store']);
     Route::get('delete/standar-pelayanan/{id}', [StandarPelayananController::class, 'destroy']);
 
-    Route::resource('/admin', App\Http\Controllers\CategoryController::class);
-    Route::get('category', [CategoryController::class, 'index']);
+    Route::resource('/category', App\Http\Controllers\CategoryController::class);
     Route::get('category/delete/{id}', [CategoryController::class, 'destroy']);
     Route::post('enable/{id}', [CategoryController::class, 'enableCategory']);
     Route::post('disable/{id}', [CategoryController::class, 'disableCategory']);
 
     Route::get('messages', [ContactController::class, 'index']);
     Route::get('delete/message/{id}', [ContactController::class, 'destroy']);
+
+    Route::get('setting/profile', [ProfileController::class, 'index']);
+    Route::get('setting/profile/create', [ProfileController::class, 'create']);
+    Route::get('setting/profile/{id}', [ProfileController::class, 'edit']);
+    Route::post('profile/create', [ProfileController::class, 'store']);
+    Route::put('profile/update/{id}', [ProfileController::class, 'update']);
+
 });
 
 require __DIR__.'/auth.php';

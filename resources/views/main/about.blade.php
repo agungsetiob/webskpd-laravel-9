@@ -92,6 +92,7 @@
     <!-- ====== Banner Section End -->
 
     <!-- ====== About Section Start -->
+    @foreach ($profiles as $p)
     <section
       id="about"
       class="pt-20 lg:pt-[120px] pb-20 lg:pb-[120px] bg-[#f3f4fe]"
@@ -147,33 +148,19 @@
                       mb-6
                     "
                   >
-                    Sekilas tentang RSUD dr. H. Andi Abdurrahman Noor
+                    {{$p->heading}}
                   </h2>
                 <div class="text-center">
                   <div class="relative inline-block z-10">
                     <img
-                      src="{{url('storage/rsud.jpeg')}}"
+                      src="{{url('storage/posts/'.$p->image)}}"
                       alt="image"
                       class="mx-auto lg:ml-auto"
                     />
                   </div>
                 </div>
-                  <h5 class="text-lg font-semibold mb-6">
-                    Visi Kabupaten Tanah Bumbu:<br>
-                    Membangun Tanah Bumbu Maju, Mandiri, Religius dan Demokratis
-                  </h5>
-                  <h5 class="text-lg font-semibold mb-6">
-                    Misi Kabupaten Tanah Bumbu:<br>
-                    + Mewujudkan Sumber Daya Manusia yang Berkualitas, Produktif dan Berakhlak Mulia.<br>
-                    + Mewujudkan Infrastruktur Wilayah yang Mantap untuk Menopang Daya Saing Pelayanan Publik dan Perekonomian. <br>
-                    + Mewujudkan Pengelolaan Sumber Daya Alam yang Arif dengan Memperhatikan Daya Dukung dan Daya Tampung Lingkungan. <br>
-                    + Mewujudkan Perekonomian Daerah Berbasis Pengembangan Potensi Maritim dan Agroindustri. Membangun Tata Kelola Pemerintahan yang Melayani, Sederhana dan Akuntabel.<br>
-                  </h5>
-                  <p style="text-indent: 40px;" class="text-base mb-6 leading-relaxed teks-tengah">
-                    Sejak berdirinya Kabupaten Tanah Bumbu pada tanggal 8 April 2003, RSUD Amanah Husada ditetapkan sebagai RSUD Kabupaten Tanah Bumbu sesuai SK Bupati Tanah Bumbu Nomor 25 Tahun 2003 tentang Penunjukan RSUD dan SK Bupati Nomor 26 Tahun 2003 tentang Izin Operasional RSUD Amanah Husada. Kemudian, sesuai dengan Perda Nomor 10 tahun 2013 tentang pembentukan organisasi dan tata kerja rumah sakit umum, berubah namanya menjadi RSUD dr. H. Andi Abdurahman Noor.
-                    <p style="text-indent: 40px;" class="text-base mb-6 leading-relaxed teks-tengah">Sejak pertama didirikan, Rumah Sakit Kabupaten yang berfungsi sebagai pusat rujukan Kabupaten yang pada saat itu masih menggunakan bangunan yang bersifat sementara karena bangunan Rumah Sakit ini berstatus kontrak dengan konstruksi yang diperuntukkan bagi sebuah hotel sehingga penataan ruangnya masih sangat jauh mengikuti tata ruang Rumah Sakit pada umumnya. Selain itu, peralatan yang digunakan sebagian besar merupakan hibah dari Rumah Sakit Daerah Kotabaru sehingga sebagian besar peralatan tersebut sudah rusak dan tidak dapat digunakan lagi. Keadaan ini mengakibatkan pelayanan kesehatan yang sangat dibutuhkan masyarakat belum dapat dilakukan secara berkualitas dan maksimal.</p>
-                    <p style="text-indent: 40px;" class="text-base mb-6 leading-relaxed teks-tengah">Sejak tanggal 1 Februari 2010, Rumah Sakit Kabupaten ini pindah ke lokasinya yang baru di desa Sepunggur yang merupakan bangunan sendiri dan memenuhi standar bangunan Rumah Sakit yang didirikan diatas lahan seluas ± 6 hektar. Pembangunan dilakukan secara Multiyears dari tahun 2007 s/d 2010 yang bersumber dari dana APBD Murni Daerah Kabupaten Tanah Bumbu.</p>
-                  </p>
+                    <p style="text-indent: 40px;" class="text-base mb-6 leading-relaxed teks-tengah">{!!$p->about!!}
+                    </p>
                 </div>
                 
               </div>
@@ -182,6 +169,7 @@
         </div>
       </div>
     </section>
+    @endforeach
     <!-- ====== About Section End -->
 
     <!-- ====== Footer Section Start -->
