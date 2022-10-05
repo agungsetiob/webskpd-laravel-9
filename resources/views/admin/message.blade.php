@@ -141,6 +141,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Message</th>
+                                            <th>Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -150,6 +151,7 @@
                                             <td> {{$mes->name}} </td>
                                             <td> {{$mes->email}} </td>
                                             <td> {{$mes->message}} </td>
+                                            <td> {{$mes->created_at}} </td>
                                             <td>
                                                 <button class="btn btn-danger btn-sm" title="hapus" data-toggle="modal" onclick="deleteMessage({{$mes->id}})"><i class="fas fa-trash"></i></button>       
                                         </tr>
