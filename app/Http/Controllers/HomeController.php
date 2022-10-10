@@ -6,6 +6,7 @@ use App\Models\{Post, Doctor, User, Category};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 use DB;
 use Auth;
 
@@ -188,5 +189,53 @@ class HomeController extends Controller
         } else{
             return redirect()->back()->with('error', 'ingatlah dunia hanya sementara');
         }
+    }
+
+    public function quran()
+    {
+        //api alquran
+        $response = Http::get('https://equran.id/api/surat');
+
+        //jadikan json
+        $data = $response->json();
+        // dd($data);
+        //tampilkan dan kirim data
+        return view('main.quran', compact('data'));
+    }
+
+    public function detailSurah(int $surah)
+    {
+        $response = Http::get('https://equran.id/api/surat/' . $surah);
+        $datadetail = $response->json();
+        return view('main.surat', compact('datadetail'));
+    }
+
+    public function cariSurah(Request $request)
+    {
+
+        $this->validate($request, [
+            'cari' => 'required'
+        ]);
+        $cari = $request->cari;
+
+
+        $ch = curl_init("https://al-quran-8d642.firebaseio.com/data.json?pretty=true");
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
+        ]);
+        $data = json_decode(curl_exec($ch), true);
+        curl_close($ch);
+
+        $find = [];
+        $cari = trim(strtolower($cari));
+        foreach ($data as $k => $v) {
+            $n = strtolower($v["nama"]);
+            if (strpos($n, $cari) !== false) {
+                $find[] = $v;
+            }
+        }
+        return view('main.search-surah', compact('data', 'find'));
     }
 }

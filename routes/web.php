@@ -84,4 +84,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//route alquran api
+Route::get('quran', [HomeController::class, 'quran']);
+//route cari surat
+Route::get('/surat/cari', [HomeController::class, 'cariSurah']);
+//route surat
+Route::get('quran/surat/{surah}', [HomeController::class, 'detailsurah'])->name('detail.surah');
+
 require __DIR__.'/auth.php';
