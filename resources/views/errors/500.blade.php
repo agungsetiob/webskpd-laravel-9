@@ -14,9 +14,8 @@
     <div class="content">
         <img src="{{ url('storage/hulk-404.gif') }}" title="error" />
         <p><span></span>
-        	@section('title', __('Server Error'))
-			@section('code', '500')
-			@section('message', __('Server Error'))</p>
+            500 | SERVER ERROR
+        </p>
         <a href="#">We'll Be Back Soon</a>
     </div>
 </body>

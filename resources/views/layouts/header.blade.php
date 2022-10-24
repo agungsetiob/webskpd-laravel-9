@@ -361,6 +361,20 @@
                       "
                     >
                       <a
+                        href="{{ url('quran') }}"
+                        class="
+                          block
+                          text-sm text-body-color
+                          rounded
+                          hover:text-primary
+                          py-[10px]
+                          px-4
+                        "
+                        target="_blank"
+                      >
+                        Al-Qur'an Digital
+                      </a>
+                      <a
                         href="{{ url('blog') }}"
                         class="
                           block
