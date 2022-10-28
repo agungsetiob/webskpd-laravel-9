@@ -293,8 +293,9 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap -mx-4">
+        <div class="flex flex-wrap -mx-4 justify-center">
           <div class="w-full lg:w-1/2 px-4">
+            @forelse ($faqs as $faq)
             <div
               class="
                 single-faq
@@ -352,7 +353,12 @@
                 </p>
               </div>
             </div>
-            <div
+            @empty
+              <div class="text-center border border-red text-red px-4 py-3 rounded relative">
+                Data belum Tersedia.
+              </div>
+            @endforelse
+            <!-- <div
               class="
                 single-faq
                 w-full
@@ -640,7 +646,7 @@
                   Sistem pelayanan BPJS menggunakan paket INA CBGs, sehingga jaminan akhir baru bisa diketahui saat akhir pelayanan setelah ada resume medis dari DPJP (dokter penanggung jawab pasien).
                 </p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

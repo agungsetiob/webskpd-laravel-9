@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Post, Doctor, User, Category};
+use App\Models\{Post, Doctor, User, Category, Faq};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -40,13 +40,17 @@ class HomeController extends Controller
         }
     }
 
-    //doctor for main page
-    public function homeDoctor()
+    //front page
+    public function front()
     {
         $doctors = Doctor::inRandomOrder()
                 ->limit(4)
                 ->get();
-        return view('main.index', compact('doctors'));
+        $faqs = Faq::inRandomOrder()
+                ->limit(6)
+                ->get();
+
+        return view('main.index', compact('doctors', 'faqs'));
     }
 
     //sp doctor for doctor page for visitors
@@ -70,7 +74,8 @@ class HomeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage
+     * Store doctor data.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -98,6 +103,52 @@ class HomeController extends Controller
 
         //redirect to index
         return redirect()->back()->with(['success' => 'Data saved succesfully']);
+    }
+
+
+    /**
+     * Update Doctor data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateDoctor($id, Request $request){
+
+        $this->validate($request, [
+            'name'              => 'required',
+            'category'          => 'required',
+            'specialization'    => 'required'
+        ]);
+
+        $doc = Doctor::findOrFail($id);
+        //check if image is uploaded
+        if ($request->hasFile('photo')) {
+
+            //upload new image
+            $image = $request->file('photo');
+            $image->storeAs('public/doctor', $image->hashName());
+
+            //delete old image
+            Storage::delete('public/doctor'.$doc->photo);
+
+            //update post with new image
+            $doc->update([
+                'photo'    => $image->hashName(),
+                'name'     => addslashes($request->name),
+                'category' => $request->category,
+                'specialization'   => $request->specialization
+            ]);
+
+        } else {
+
+            //update without image
+            $doc->update([
+                'name'     => addslashes($request->name),
+                'category' => $request->category,
+                'specialization'   => $request->specialization
+            ]);
+        }
+        return redirect()->back()->with(['success' => 'Data updated succesfully']);
     }
 
     /**
@@ -159,12 +210,13 @@ class HomeController extends Controller
    public function postByUser($user_id)
     {
         
+        $title = 'Sorted by author';
         $posts = Post::where('user_id', $user_id)
             ->paginate(6);
         foreach ($posts as $post){
             $post->content = Str::limit($post->content, 40);   
         }
-        return view ('main.blog', compact('posts'));
+        return view ('main.blog', compact('posts', 'title'));
     }
 
     /**

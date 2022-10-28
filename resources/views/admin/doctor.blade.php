@@ -158,7 +158,9 @@
                                             <td> {{$doc->specialization}} </td>
                                             <td> {{$doc->created_at}} </td>
                                             <td>
-                                                <button class="btn btn-danger btn-sm" title="hapus" data-toggle="modal" onclick="deleteDoctor({{$doc->id}})"><i class="fas fa-trash"></i></button>       
+                                                <button class="btn btn-danger btn-sm" title="hapus" data-toggle="modal" onclick="deleteDoctor({{$doc->id}})"><i class="fas fa-trash"></i> Delete</button>
+
+                                                <button class="btn btn-info btn-sm" title="edit" data-target="#editModal{{$doc->id}}" data-toggle="modal"><i class="fas fa-pen"></i> Edit</button>       
                                         </tr>
                                         @empty
                                             <div class="alert alert-danger">
@@ -264,7 +266,7 @@
         </div>
     </div>
 
-     <!-- Add Modal -->
+    <!-- Add Modal -->
     <div class="modal fade" id="addDoctor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -317,6 +319,66 @@
         </div>
     </div>
 
+
+
+    <!-- Edit Modal -->
+    @foreach ($doctors as $doc)
+    <div class="modal fade" id="editModal{{$doc->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Doctor Data {{$doc->id}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ url('update/doctor', $doc->id) }}" method="POST" enctype="multipart/form-data" id="editForm">
+                        @csrf
+                        @method ('PUT')
+
+                        <div class="form-group">
+                            <input type="hidden" id="idEdit" name="id" />
+                            <label for="name">Name</label>
+                            <input value="{{ old('name', $doc->name) }}" type="text" name="name" class="form-control" id="nameEdit" required>
+                            <label for="category">Category</label>
+                            <select name="category" id="category" class="form-control @error('category') is-invalid @enderror" required>
+                                <option disabled>Choose category</option>
+                                <option value="umum" @selected($doc->category == 'umum')>Umum</option>
+                                <option value="spesialis" @selected($doc->category == 'spesialis')>Spesialis</option>
+                            </select>
+                            <label for="specialization">Specialization</label>
+                            <input value="{{ old('specialization', $doc->specialization) }}" type="text" name="specialization" class="form-control" id="Specialization" required>
+                            <label for="photo">Choose photo</label>
+                            <div class="form-group">
+                                <div class="input-group ">
+                                    <label class="input-group-btn">
+                                        <span class="btny btn-outline-primary">
+                                            Browse<input accept="image/*" id="uploadBtn" type="file" style="display: none;" multiple name="photo">
+                                        </span>
+                                    </label>
+                                    <input id="uploadFile photo" type="text" class="form-control @error('photo') is-invalid @enderror" readonly placeholder="Choose an image">
+                                </div>
+                                @error('photo')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror  
+                            </div>
+                            <script type="text/javascript">
+                                document.getElementById("uploadBtn").onchange = function () {
+                                document.getElementById("uploadFile").value = this.value;};
+                            </script>
+                        </div>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button id="editLink" type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </div>
+    @endforeach
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -331,11 +393,11 @@
     <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-    <!-- Page level custom scripts -->
+    {{--Page level custom scripts--}}
     <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
     <!-- delete modal script -->
-    <script>
+    <script type="text/javascript">
         function deleteDoctor(id){
             var link = document.getElementById('deleteLink')
             link.href = "{{ url('delete/doctor')}}/" + id

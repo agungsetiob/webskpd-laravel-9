@@ -36,7 +36,7 @@ Route::get('/storage', function () {
     Artisan::call('storage:link');
 });
 
-Route::get('/', [HomeController::class, 'homeDoctor']);
+Route::get('/', [HomeController::class, 'front']);
 Route::get('blog', [HomeController::class, 'index']);
 Route::get('blog/{category_id}/{category}', [HomeController::class, 'category']);
 Route::get('blog/{slug}', [HomeController::class, 'show'])->name('blog');
@@ -59,22 +59,28 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/our-services', [PostController::class, 'services']);
     Route::get('/skm', [PostController::class, 'skm']);
 
+
     Route::get('doctors', [HomeController::class, 'create']);
     Route::post('add/doctor', [HomeController::class, 'store']);
     Route::get('delete/doctor/{id}', [HomeController::class, 'destroy']);
+    Route::put('update/doctor/{id}', [HomeController::class, 'updateDoctor']);
+
 
     Route::resource('/standards', \App\Http\Controllers\StandarPelayananController::class);
     Route::get('standar/pelayanan', [StandarPelayananController::class, 'index']);
     Route::post('upload/standar-pelayanan', [StandarPelayananController::class, 'store']);
     Route::get('delete/standar-pelayanan/{id}', [StandarPelayananController::class, 'destroy']);
 
+
     Route::resource('/category', App\Http\Controllers\CategoryController::class);
     Route::get('category/delete/{id}', [CategoryController::class, 'destroy']);
     Route::post('enable/{id}', [CategoryController::class, 'enableCategory']);
     Route::post('disable/{id}', [CategoryController::class, 'disableCategory']);
 
+
     Route::get('messages', [ContactController::class, 'index']);
     Route::get('delete/message/{id}', [ContactController::class, 'destroy']);
+
 
     Route::get('setting/profile', [ProfileController::class, 'index']);
     Route::get('setting/profile/create', [ProfileController::class, 'create']);
@@ -84,11 +90,13 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
 //route alquran api
 Route::get('quran', [HomeController::class, 'quran']);
 //route cari surat
 Route::get('/surat/cari', [HomeController::class, 'cariSurah']);
 //route surat
 Route::get('quran/surat/{surah}', [HomeController::class, 'detailsurah'])->name('detail.surah');
+
 
 require __DIR__.'/auth.php';
