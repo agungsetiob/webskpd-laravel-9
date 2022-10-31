@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CategoryController, ContactController};
+use App\Http\Controllers\{CategoryController, ContactController, FaqController};
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -36,7 +36,7 @@ Route::get('/storage', function () {
     Artisan::call('storage:link');
 });
 
-Route::get('/', [HomeController::class, 'front']);
+Route::get('/', [HomeController::class, 'frontPage']);
 Route::get('blog', [HomeController::class, 'index']);
 Route::get('blog/{category_id}/{category}', [HomeController::class, 'category']);
 Route::get('blog/{slug}', [HomeController::class, 'show'])->name('blog');
@@ -87,6 +87,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('setting/profile/{id}', [ProfileController::class, 'edit']);
     Route::post('profile/create', [ProfileController::class, 'store']);
     Route::put('profile/update/{id}', [ProfileController::class, 'update']);
+
+
+    Route::resource('faqs', App\Http\Controllers\FaqController::class);
 
 });
 

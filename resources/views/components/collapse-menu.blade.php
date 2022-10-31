@@ -29,7 +29,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="javascript:void(0)">Web setting</a>
                         <a class="collapse-item" href="{{url('setting/profile')}}">Profile</a>
-                        <a class="collapse-item" href="javascript:void(0)">FAQ</a>
+                        <a class="collapse-item" href="{{route('faqs.index')}}">FAQ</a>
                         <a class="collapse-item" href="javascript:void(0)">Menu</a>
                     </div>
                 </div>

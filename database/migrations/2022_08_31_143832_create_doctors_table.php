@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('photo');
+            $table->string('photo')->default('ava.png');//i define defaault manually without migration
             $table->string('name');
             $table->text('specialization');
             $table->timestamps();

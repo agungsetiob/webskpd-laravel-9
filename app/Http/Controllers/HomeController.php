@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Post, Doctor, User, Category, Faq};
+use App\Models\{Post, Doctor, User Faq};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +41,7 @@ class HomeController extends Controller
     }
 
     //front page
-    public function front()
+    public function frontPage()
     {
         $doctors = Doctor::inRandomOrder()
                 ->limit(4)
@@ -83,7 +83,7 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'photo'             => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo'             => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name'              => 'required',
             'category'          => 'required',
             'specialization'    => 'required'
@@ -91,15 +91,25 @@ class HomeController extends Controller
 
         //upload image
         $photo = $request->file('photo');
-        $photo->storeAs('public/doctor', $photo->hashName());
+        if ($request->hasFile('photo')) {
+            $photo->storeAs('public/doctor', $photo->hashName());
 
-        //create post
-        Doctor::create([
-            'photo'    => $photo->hashName(),
-            'name'     => addslashes($request->name),
-            'category' => $request->category,
-            'specialization'   => $request->specialization
-        ]);
+            //create post
+            Doctor::create([
+                'photo'    => $photo->hashName(),
+                'name'     => addslashes($request->name),
+                'category' => $request->category,
+                'specialization'   => $request->specialization
+            ]);
+        } else {
+
+            //update without image
+            Doctor::create([
+                'name'     => addslashes($request->name),
+                'category' => $request->category,
+                'specialization'   => $request->specialization
+            ]);
+        }
 
         //redirect to index
         return redirect()->back()->with(['success' => 'Data saved succesfully']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use Auth;
 
 class FaqController extends Controller
 {
@@ -14,7 +15,13 @@ class FaqController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->role == 'admin') {
+            $faqs = Faq::all();
+        return view ('admin.faq', compact('faqs'));
+        } else {
+            return redirect()->back()->with(['error' => 'Hok a hok e!']);
+        }
+        
     }
 
     /**
@@ -35,7 +42,18 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'question'     => 'required|min:10',
+            'answer'   => 'required|min:10'
+        ]);
+
+        //create post
+        Faq::create([
+            'question' => addslashes($request->question),
+            'answer'   => $request->answer
+        ]);
+
+        return redirect()->back()->with(['success' => 'Data saved succesfully']);
     }
 
     /**

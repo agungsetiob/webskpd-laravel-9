@@ -294,8 +294,8 @@
         </div>
 
         <div class="flex flex-wrap -mx-4 justify-center">
-          <div class="w-full lg:w-1/2 px-4">
-            @forelse ($faqs as $faq)
+          @forelse ($faqs as $faq)
+          <div class="w-full lg:w-1/2 px-4"> 
             <div
               class="
                 single-faq
@@ -343,311 +343,22 @@
                 </div>
                 <div class="w-full">
                   <h4 class="text-base sm:text-lg font-semibold text-black">
-                    Kapan batas waktu pendaftaran klinik rawat jalan?
+                    {{$faq->question}}
                   </h4>
                 </div>
               </button>
               <div class="faq-content pl-[62px] hidden">
                 <p class="text-base text-body-color leading-relaxed py-3">
-                  Pendaftaran rawat jalan buka mulai pukul 08.00 sampai pukul 11.00.
+                  {{$faq->answer}}
                 </p>
               </div>
+            </div>
             </div>
             @empty
               <div class="text-center border border-red text-red px-4 py-3 rounded relative">
                 Data belum Tersedia.
               </div>
             @endforelse
-            <!-- <div
-              class="
-                single-faq
-                w-full
-                bg-white
-                border border-[#F3F4FE]
-                rounded-lg
-                p-5
-                sm:p-8
-                mb-8
-                wow
-                fadeInUp
-              "
-              data-wow-delay=".15s
-              "
-            >
-              <button class="faq-btn flex items-center w-full text-left">
-                <div
-                  class="
-                    w-full
-                    max-w-[40px]
-                    h-10
-                    flex
-                    items-center
-                    justify-center
-                    rounded-lg
-                    bg-primary
-                    text-primary
-                    bg-opacity-5
-                    mr-5
-                  "
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="fill-current icon"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base sm:text-lg font-semibold text-black">
-                    Bagaimana cara pendaftaran MCU?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content pl-[62px] hidden">
-                <p class="text-base text-body-color leading-relaxed py-3">
-                  Mengisi formulir di loket mcu lantai 2 gedung utama dengan 
-                  membawa ktp.
-                </p>
-              </div>
-            </div>
-            <div
-              class="
-                single-faq
-                w-full
-                bg-white
-                border border-[#F3F4FE]
-                rounded-lg
-                p-5
-                sm:p-8
-                mb-8
-                wow
-                fadeInUp
-              "
-              data-wow-delay=".2s
-              "
-            >
-              <button class="faq-btn flex items-center w-full text-left">
-                <div
-                  class="
-                    w-full
-                    max-w-[40px]
-                    h-10
-                    flex
-                    items-center
-                    justify-center
-                    rounded-lg
-                    bg-primary
-                    text-primary
-                    bg-opacity-5
-                    mr-5
-                  "
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="fill-current icon"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base sm:text-lg font-semibold text-black">
-                    Apa saja persyaratan pendaftaran pasien?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content pl-[62px] hidden">
-                <p class="text-base text-body-color leading-relaxed py-3">
-                  Untuk pasien umum cukup membawa ktp, sedangkan untuk pasien
-                  bpjs membawa kartu bpjs dan surat rujukan dari fktp.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full lg:w-1/2 px-4">
-            <div
-              class="
-                single-faq
-                w-full
-                bg-white
-                border border-[#F3F4FE]
-                rounded-lg
-                p-5
-                sm:p-8
-                mb-8
-                wow
-                fadeInUp
-              "
-              data-wow-delay=".1s
-              "
-            >
-              <button class="faq-btn flex items-center w-full text-left">
-                <div
-                  class="
-                    w-full
-                    max-w-[40px]
-                    h-10
-                    flex
-                    items-center
-                    justify-center
-                    rounded-lg
-                    bg-primary
-                    text-primary
-                    bg-opacity-5
-                    mr-5
-                  "
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="fill-current icon"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base sm:text-lg font-semibold text-black">
-                    Jam operasional rsud dr. H. Andi Abdurrahman Noor?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content pl-[62px] hidden">
-                <p class="text-base text-body-color leading-relaxed py-3">
-                  Untuk rawat jalan senin-kamis jam 08.00-15.00, untuk IGD 24 jam.
-                </p>
-              </div>
-            </div>
-            <div
-              class="
-                single-faq
-                w-full
-                bg-white
-                border border-[#F3F4FE]
-                rounded-lg
-                p-5
-                sm:p-8
-                mb-8
-                wow
-                fadeInUp
-              "
-              data-wow-delay=".15s
-              "
-            >
-              <button class="faq-btn flex items-center w-full text-left">
-                <div
-                  class="
-                    w-full
-                    max-w-[40px]
-                    h-10
-                    flex
-                    items-center
-                    justify-center
-                    rounded-lg
-                    bg-primary
-                    text-primary
-                    bg-opacity-5
-                    mr-5
-                  "
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="fill-current icon"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base sm:text-lg font-semibold text-black">
-                    Siapa saja yang memiliki akses informasi rekam medis saya?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content pl-[62px] hidden">
-                <p class="text-base text-body-color leading-relaxed py-3">
-                  Profesional Pemberi Asuhan yang merawat Anda memiliki akses terhadap riwayat medis dalam rekam medis Anda. Selain itu, pada saat mengisi persetujuan umum (General Consent), Anda akan diminta untuk menuliskan nama dan nomor kontak keluarga atau kerabat yang dapat dihubungi dalam keadaan darurat dan dapat diberikan akses terhadap isi rekam medis Anda (jika Anda mengizinkan). DPJP (Dokter Penanggung Jawab Pasien) Utama dan Ners hanya akan berkomunikasi dengan keluarga atau kerabat yang Anda cantumkan namanya dalam persetujuan umum tersebut dan tidak akan menyampaikan informasi medis tentang diri Anda kepada orang lain selain yang Anda izinkan untuk mengetahui tentang kondisi medis Anda. Jika Anda tidak berkenan kondisi medis Anda diketahui oleh keluarga atau kerabat Anda, segera sampaikan mengenai hal ini kepada staf kami saat proses pendaftaran atau selama Anda dirawat.
-                </p>
-              </div>
-            </div>
-            <div
-              class="
-                single-faq
-                w-full
-                bg-white
-                border border-[#F3F4FE]
-                rounded-lg
-                p-5
-                sm:p-8
-                mb-8
-                wow
-                fadeInUp
-              "
-              data-wow-delay=".2s
-              "
-            >
-              <button class="faq-btn flex items-center w-full text-left">
-                <div
-                  class="
-                    w-full
-                    max-w-[40px]
-                    h-10
-                    flex
-                    items-center
-                    justify-center
-                    rounded-lg
-                    bg-primary
-                    text-primary
-                    bg-opacity-5
-                    mr-5
-                  "
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="fill-current icon"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base sm:text-lg font-semibold text-black">
-                    Bagaimana cara mengetahui selisih biaya perawatan saat menggunakan BPJS namun naik kelas perawatan?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content pl-[62px] hidden">
-                <p class="text-base text-body-color leading-relaxed py-3">
-                  Sistem pelayanan BPJS menggunakan paket INA CBGs, sehingga jaminan akhir baru bisa diketahui saat akhir pelayanan setelah ada resume medis dari DPJP (dokter penanggung jawab pasien).
-                </p>
-              </div>
-            </div> -->
-          </div>
         </div>
       </div>
 
@@ -681,7 +392,7 @@
         </svg>
       </div>
     </section>
-    <!-- ====== Faq Section End -->
+    <!-- ====== Faq Section End
     <!-- ====== Testimonials End ====== -->
 
     <!-- ====== Team Section Start -->
