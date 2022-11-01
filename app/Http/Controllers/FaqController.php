@@ -50,7 +50,7 @@ class FaqController extends Controller
         //create post
         Faq::create([
             'question' => addslashes($request->question),
-            'answer'   => $request->answer
+            'answer'   => addcslashes($request->answer)
         ]);
 
         return redirect()->back()->with(['success' => 'Data saved succesfully']);
@@ -87,7 +87,18 @@ class FaqController extends Controller
      */
     public function update(Request $request, Faq $faq)
     {
-        //
+        $this->validate($request, [
+            'question'     => 'required|min:10',
+            'answer'   => 'required|min:10'
+        ]);
+
+        $faq->update([
+            'question' => addslashes($request->question),
+            'answer'   => addslashes($request->answer)
+        ]);
+
+        return redirect()->back()->with(['success' => 'Data updated succesfully']);
+
     }
 
     /**
@@ -98,6 +109,8 @@ class FaqController extends Controller
      */
     public function destroy(Faq $faq)
     {
-        //
+        $faq->delete();
+        return redirect()->back()->with(['success' => 'Data deleted succesfully']);
+
     }
 }

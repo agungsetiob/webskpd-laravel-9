@@ -257,9 +257,9 @@
                 <div class="modal-body">Select "Delete" below if you are sure to delete this data.</div>
                 <div class="modal-footer">
                     <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-                            @csrf
-                            @method ('delete')
-                    <a id="deleteLink" class="btn btn-danger" type="button">Delete</a>
+                    @csrf
+                    @method ('delete')
+                    <a id="hapusFaq" class="btn btn-danger" type="button">Delete</a>
                 </div>
             </div>
         </div>
@@ -293,28 +293,28 @@
     </div>
 
 
-    <!-- Edit Modal -->
+    {{-- Edit Modal --}}
     @foreach ($faqs as $faq)
     <div class="modal fade" id="editModal{{$faq->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit FAQ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('update/doctor', $faq->id) }}" method="POST" enctype="multipart/form-data" id="editForm">
+                    <form action="{{ route('faqs.update', $faq->id) }}" method="POST">
                         @csrf
                         @method ('PUT')
 
                         <div class="form-group">
                             <input type="hidden" id="idEdit" name="id" />
-                            <label for="name">Name</label>
-                            <input value="{{ old('name', $faq->name) }}" type="text" name="name" class="form-control" id="nameEdit" required>
-                            <<label for="specialization">Specialization</label>
-                            <input value="{{ old('specialization', $faq->specialization) }}" type="text" name="specialization" class="form-control" id="Specialization" required>
+                            <label for="question">Question</label>
+                            <input value="{{ old('question', $faq->question) }}" type="text" name="question" class="form-control" required>
+                            <label for="answer">Answer</label>
+                            <textarea rows="7" type="text" name="answer" class="form-control" required>{{ old('answer', $faq->answer) }}</textarea>
                         </div>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button id="editLink" type="submit" class="btn btn-primary">Save</button>
@@ -345,8 +345,8 @@
     <!-- delete modal script -->
     <script type="text/javascript">
         function deleteFaq(id){
-            var link = document.getElementById('deleteLink')
-            link.href = '{{ url('faqs')}}/' + id
+            var link = document.getElementById('hapusFaq')
+            link.href = "{{ url('faqs')}}/" + id
             $('#deleteModal').modal('show')
         }
     </script>

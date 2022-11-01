@@ -225,7 +225,7 @@
                       ease-in-out
                     "
                   >
-                    Read More
+                    Read More ⇾
                   </a>
                 </div>
                 <div class="text-center">
@@ -359,6 +359,30 @@
                 Data belum Tersedia.
               </div>
             @endforelse
+
+          <a
+          href="{{url('our/specialists')}}"
+          class="
+          w-full
+          inline-flex
+          items-center
+          justify-center
+          py-3
+          px-5
+          rounded
+          text-white
+          bg-primary
+          text-base
+          font-medium
+          hover:bg-dark
+          transition
+          duration-300
+          ease-in-out
+          mx-auto
+          ">
+          Lihat Semua ⇾
+          </a>
+
         </div>
       </div>
 
@@ -970,7 +994,7 @@
           ease-in-out
           mx-auto
           ">
-          Lihat semua dokter spesialis
+          Lihat semua dokter spesialis ⇾
           </a>
           <a
           href="{{url('our/doctors')}}"
@@ -992,7 +1016,7 @@
           duration-300
           ease-in-out
           ">
-          Lihat semua dokter umum
+          Lihat semua dokter umum ⇾
           </a>
         </div>
       </div>

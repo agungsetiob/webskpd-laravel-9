@@ -89,7 +89,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('profile/update/{id}', [ProfileController::class, 'update']);
 
 
-    Route::resource('faqs', App\Http\Controllers\FaqController::class);
+    Route::resource('setting/faqs', App\Http\Controllers\FaqController::class);
+    Route::get('/faqs/{faq}', [FaqController::class, 'destroy']);
 
 });
 
