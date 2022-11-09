@@ -100,6 +100,117 @@
                 "
               >
                 <ul class="blcok lg:flex">
+
+
+                  @if (Auth::guest())
+                  <li class="relative group">
+                    <a
+                      href="{{url('login')}}"
+                      class="
+                        text-base text-dark
+                        lg:text-white
+                        lg:group-hover:opacity-70
+                        lg:group-hover:text-white
+                        group-hover:text-primary
+                        py-2
+                        lg:py-6 lg:inline-flex lg:px-0
+                        flex
+                        mx-8
+                        lg:mr-0
+                        lg:hidden
+                      "
+                    >
+                      Masuk
+                    </a>
+                  </li>
+                  <li class="relative group">
+                    <a
+                      href="{{url('user-register')}}"
+                      class="
+                        text-base text-dark
+                        lg:text-white
+                        lg:group-hover:opacity-70
+                        lg:group-hover:text-white
+                        group-hover:text-primary
+                        py-2
+                        lg:py-6 lg:inline-flex lg:px-0
+                        flex
+                        mx-8
+                        lg:mr-0
+                        lg:hidden
+                      "
+                    >
+                      Daftar
+                    </a>
+                  </li>
+                  @elseif (Auth::user())
+                  <li class="relative group">
+                    <a
+                      href="#"
+                      class="
+                        text-base text-dark
+                        lg:text-white
+                        lg:group-hover:opacity-70
+                        lg:group-hover:text-white
+                        group-hover:text-primary
+                        py-2
+                        lg:py-6 lg:inline-flex lg:px-0
+                        flex
+                        mx-8
+                        lg:mr-0
+                        lg:hidden
+                      "
+                    >
+                      Hi {{Auth::user()->username}}
+                    </a>
+                    <div
+                      class="
+                        submenu
+                        relative
+                        lg:absolute
+                        w-[250px]
+                        top-full
+                        lg:top-[110%]
+                        left-0
+                        rounded-sm
+                        lg:shadow-lg
+                        p-4
+                        lg:block lg:opacity-0 lg:invisible
+                        group-hover:opacity-100
+                        lg:group-hover:visible lg:group-hover:top-full
+                        bg-white
+                        transition-[top]
+                        duration-300
+                      "
+                    >
+                      <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button
+                        class="
+                          block
+                          text-sm text-body-color
+                          rounded
+                          hover:text-primary
+                          py-[10px]
+                          px-4
+                        ">
+                        Logout
+                        </button>
+                    </form>
+                      <a href="{{url('posts/create')}}"
+                      class="
+                          block
+                          text-sm text-body-color
+                          rounded
+                          hover:text-primary
+                          py-[10px]
+                          px-4">
+                          Create post  
+                      </a>
+                    </div>
+                  </li>
+                  @endif
+                  
                   <li class="relative group">
                     <a
                       href="{{url ('/#home')}}"

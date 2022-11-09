@@ -113,7 +113,7 @@
                         lg:hidden
                       "
                     >
-                      Sign in
+                      Masuk
                     </a>
                   </li>
                   <li class="relative group">
@@ -133,7 +133,7 @@
                         lg:hidden
                       "
                     >
-                      Sign up
+                      Daftar
                     </a>
                   </li>
                   @elseif (Auth::user())
@@ -458,7 +458,7 @@
                   loginBtn
                 "
               >
-                Sign In
+                Masuk
               </a>
               <a
                 href=" {{route('user-register')}} "
@@ -477,7 +477,7 @@
                   sm:visible
                 "
               >
-                Sign Up
+                Daftar
               </a>
             </div>
             @elseif (Auth::user())
