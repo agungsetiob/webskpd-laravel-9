@@ -300,4 +300,12 @@ class HomeController extends Controller
         }
         return view('main.search-surah', compact('data', 'find'));
     }
+
+    public function faq()
+    {
+        $title = 'Frequently Asked Question';
+        $faqs = Faq::inRandomOrder()
+                ->get();
+        return view('main.faq', compact('faqs', 'title'));
+    }
 }

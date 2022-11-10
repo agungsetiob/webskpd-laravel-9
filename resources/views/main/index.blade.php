@@ -361,7 +361,7 @@
             @endforelse
 
           <a
-          href="{{url('our/specialists')}}"
+          href="{{route('frequent.question')}}"
           class="
           w-full
           inline-flex
@@ -416,7 +416,7 @@
         </svg>
       </div>
     </section>
-    <!-- ====== Faq Section End
+    <!-- ====== Faq Section End -->
     <!-- ====== Testimonials End ====== -->
 
     <!-- ====== Team Section Start -->
@@ -1496,7 +1496,7 @@
                   <p class="text-base text-[#f3f4fe] text-center">
                   Developed by
                   <a
-                    href="#"
+                    href="javascript:void(0)"
                     rel="nofollow noopner"
                     target="_blank"
                     class="text-primary hover:underline"

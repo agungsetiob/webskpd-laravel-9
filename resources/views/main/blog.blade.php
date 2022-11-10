@@ -473,7 +473,7 @@
                   <p class="text-base text-[#f3f4fe]">
                   Developed by
                   <a
-                    href="#"
+                    href="javascript:void(0)"
                     rel="nofollow noopner"
                     target="_blank"
                     class="text-primary hover:underline"

@@ -44,6 +44,7 @@ Route::get('our/specialists', [HomeController::class, 'doctor']);
 Route::get('our/doctors', [HomeController::class, 'doctorGeneral']);
 Route::get('leaderboard', [HomeController::class, 'rank']);
 Route::get('from/{user_id}/{username}', [HomeController::class, 'postByUser']);
+Route::get('frequently-asked-question', [HomeController::class, 'faq'])->name('frequent.question');
 
 Route::get('standar-pelayanan', [StandarPelayananController::class, 'standarPelayanan']);
 
