@@ -459,11 +459,19 @@
                   mb-6
                 "
               >
+                @if ($doc->photo)
                 <img
                   src="{{url('storage/doctor/'. $doc->photo)}}"
                   alt="image"
                   class="w-full rounded-full"
                 />
+                @else
+                <img
+                  src="{{url('storage/logors.png')}}"
+                  alt="image"
+                  class="w-full rounded-full"
+                />
+                @endif
                 <span class="absolute top-0 left-0 z-[-1]">
                   <svg
                     width="71"

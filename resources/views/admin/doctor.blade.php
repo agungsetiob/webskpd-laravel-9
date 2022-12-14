@@ -147,6 +147,7 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Specialization</th>
+                                            <th>photo</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -155,10 +156,13 @@
                                         <tr>
                                             <td> {{$doc->name}} </td>
                                             <td> {{$doc->specialization}} </td>
+                                            <td> <img class="img-profile" src="storage/doctor/{{$doc->photo}}" height="60px"> 
+                                            </td>
                                             <td>
                                                 <button class="btn btn-danger btn-sm" title="hapus" data-toggle="modal" onclick="deleteDoctor({{$doc->id}})"><i class="fas fa-trash"></i> Delete</button>
 
-                                                <button class="btn btn-info btn-sm" title="edit" data-target="#editModal{{$doc->id}}" data-toggle="modal"><i class="fas fa-pen-square"></i> Edit</button>       
+                                                <button class="btn btn-info btn-sm" title="edit" data-target="#editModal{{$doc->id}}" data-toggle="modal"><i class="fas fa-pen-square"></i> Edit</button> 
+                                            </td>      
                                         </tr>
                                         @empty
                                             <div class="alert alert-danger">
@@ -345,7 +349,7 @@
                             <div class="form-group">
                                 <div class="input-group ">
                                     <label class="input-group-btn">
-                                        <input accept="image/*" type="file" multiple name="image">
+                                        <input accept="image/*" type="file" multiple name="photo">
                                     </label>
                                 </div>
                                 @error('image')

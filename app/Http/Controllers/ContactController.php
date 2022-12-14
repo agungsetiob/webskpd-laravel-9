@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Contact;
+use App\Models\Keluhan;
 use Auth;
 use URL;
 
@@ -122,4 +123,42 @@ class ContactController extends Controller
             return redirect()->back()->with('error', 'ingatlah dunia hanya sementara');
         }
     }
+
+
+
+
+    /**
+     * Kendala SIMRSGOS.
+     *
+     * 
+     * 
+     */
+    public function kendala()
+    {
+        return view('admin.kendala');
+    }
+
+    public function simpanKendala(Request $request)
+    {
+        $this->validate($request, [
+            'ruangan'     => 'required',
+            'kendala'   => 'required|min:20'
+        ]);
+
+        Keluhan::create([
+            'ruangan'     => addslashes($request->ruangan),
+            'kendala'   => addslashes($request->kendala)
+        ]);
+
+        return redirect('kendala/SIMRSGOS')->with(['success' => 'Berhasil kirim kendala penggunaan SIMRSGOS']);
+    }
+
+    public function kendalaSimrs ()
+    {
+        $kendalas = Keluhan::all();
+        return view('admin.daftar-kendala', compact('kendalas'));
+    }
+
+
+
 }

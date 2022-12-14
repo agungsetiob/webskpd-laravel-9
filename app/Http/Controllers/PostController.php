@@ -73,18 +73,30 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title'     => 'required|min:10',
-            'content'   => 'required|min:10'
+            'content'   => 'required|min:10',
+            'slug'      => 'unique'
         ]);
 
         //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/posts', $image->hashName());
+        if ($request->hasFile('image')){
+            $image = $request->file('image');
+            $image->storeAs('public/posts', $image->hashName());
+            //create post
+            Post::create([
+                'image'     => $image->hashName(),
+                'title'     => addslashes($request->title),
+                'content'   => $request->content,
+                'user_id'   => auth()->user()->id,
+                'slug'      => Str::slug($request->title),
+                'category_id'  => $request->category,
+                'view'      => 0
+        ]);
+        }
 
         //create post
         Post::create([
-            'image'     => $image->hashName(),
             'title'     => addslashes($request->title),
             'content'   => $request->content,
             'user_id'   => auth()->user()->id,

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="RSUD dr. H. Andi Abdurrahman Noor" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="{{asset('storage/logors.png')}}">
     <title>{{$title}}</title>
     <link
       rel="shortcut icon"

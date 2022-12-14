@@ -111,11 +111,19 @@
                   mb-6
                 "
               >
+                @if($rank->avatar)
+                <img
+                  src="{{url('storage/ava/logors.png')}}"
+                  alt="image"
+                  class="w-full rounded-full"
+                />
+                @else
                 <img
                   src="{{url('storage/ava', $rank->avatar)}}"
                   alt="image"
                   class="w-full rounded-full"
                 />
+                @endif
                 <span class="absolute top-0 left-0 z-[-1]">
                   <svg
                     width="71"

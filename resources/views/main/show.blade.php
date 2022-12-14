@@ -112,12 +112,21 @@
               data-wow-delay=".1s
               "
             >
+              @if ($post->image)
               <img
                 src="{{asset ('storage/posts/'. $post->image)}}"
                 alt="{{$post->title}}"
                 title="{{$post->title}}"
                 class="w-full h-full object-cover object-center"
               />
+              @else
+              <img
+                src="{{asset ('storage/posts/putih.jpg')}}"
+                alt="{{$post->title}}"
+                title="{{$post->title}}"
+                class="w-full h-full object-cover object-center"
+              />
+              @endif
               <div
                 class="
                   absolute

@@ -103,5 +103,9 @@ Route::get('/surat/cari', [HomeController::class, 'cariSurah']);
 //route surat
 Route::get('quran/surat/{surah}', [HomeController::class, 'detailsurah'])->name('detail.surah');
 
+Route::get('kendala/SIMRSGOS', [ContactController::class, 'kendala']);
+Route::post('kendala', [ContactController::class, 'simpanKendala'])->name('kendala');
+Route::get('kendala-simrsgos', [ContactController::class, 'kendalaSimrs']);
+
 
 require __DIR__.'/auth.php';

@@ -101,6 +101,12 @@
             </li>
             @endif
 
+            <li class="nav-item {{ (request()->is('kendala-simrsgos')) ? 'active bg-active' : '' }}">
+                <a class="nav-link" href="{{url('kendala-simrsgos')}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Kendala SIMRSGOS</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

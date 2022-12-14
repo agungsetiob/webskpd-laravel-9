@@ -303,7 +303,7 @@ class HomeController extends Controller
 
     public function faq()
     {
-        $title = 'Frequently Asked Question';
+        $title = 'Frequently Asked Questions';
         $faqs = Faq::inRandomOrder()
                 ->get();
         return view('main.faq', compact('faqs', 'title'));

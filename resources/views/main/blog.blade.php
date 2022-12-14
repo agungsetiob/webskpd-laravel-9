@@ -107,7 +107,9 @@
             <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
               <div class="rounded overflow-hidden mb-8">
                 <a href="{{url('blog/'.$post->slug)}}" class="block">
-                  <img
+                  @if ($post->image)
+                  <div style="max-height: 160px; overflow: hidden;">
+                    <img
                     src="{{ asset('storage/posts/'. $post->image)}}"
                     alt="image"
                     class="
@@ -117,6 +119,21 @@
                       group-hover:rotate-6
                     "
                   />
+                  </div>
+                  @else
+                  <div style="max-height: 160px; overflow: hidden;">
+                    <img
+                    src="{{ asset('storage/posts/putih.jpg')}}"
+                    alt="image"
+                    class="
+                      w-full
+                      transition
+                      group-hover:scale-125 
+                      group-hover:rotate-6
+                    "
+                    />                    
+                  </div>
+                  @endif
                 </a>
               </div>
               <div>
