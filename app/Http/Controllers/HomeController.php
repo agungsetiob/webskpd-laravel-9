@@ -170,8 +170,8 @@ class HomeController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        $description = Str::limit($post->content, 40);
         if ($post) {
+            $description = Str::limit($post->content, 40);
             $post->view = $post->view + 1; //aktifkan nanti kalau sudah siap go live
             $post->save();
             $popularPosts = Post::latest('view')
